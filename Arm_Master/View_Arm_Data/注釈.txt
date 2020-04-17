@@ -1,0 +1,28 @@
+ // Encoded by Shift JIS //
+
+
+以下　先輩のコード(シリアル通信を用いた送信)を読み，自分で解釈しただけで
+      直接確認したわけではない.そのため間違いがあるかもしれない
+
+
+マスター側アーム(Arduino)とパソコンのシリアル通信では
+16bit のデータを識別情報と共に head, high, low の３つに分けてやり取りしている
+これはおそらく 8bitずつしか送ることができないため
+
+その３つのそれぞれの内容は
+
+head
+  1bit目 ~ 2bit目 : value の 15bit目 ~ 16bit目
+  3bit目 ~ 6bit目 : key
+  7bit目          : value が正 0, value が負 1
+  8bit目          : 1
+
+high
+  1bit目 ~ 7bit目 : value の 8bit目 ~ 14bit目
+  8bit目          : 0
+
+low
+  1bit目 ~ 7bit目   : value の 1bit目 ~ 7bit目
+  8bit目            : 0
+
+value は送信したいデータ
