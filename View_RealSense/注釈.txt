@@ -1,0 +1,19 @@
+Windows のPCにデプスカメラを直接接続して使用する
+
+ライブラリは DXlib，OpenCV，librealsense を使用
+
+通信も何もせずに映すだけのプログラム
+
+カラー映像，深度映像，赤外線映像の３種類を映すことができる
+カラー映像 : RealSense_Color
+深度映像   : RealSense_Depth
+赤外線映像 : RealSense_Infrared といった対応のクラス
+
+RealSenseData クラスを使ってカメラからデータを取得
+
+それぞれのクラスの Update() メンバ関数によって映像を更新
+
+Mouse クラス で映像をクリックした場所の深度を取得,および表示
+SetMousePoint() メンバ関数によってマウスの場所を取得
+Draw_MousePoint() メンバ関数によって深さを画面に表示
+
