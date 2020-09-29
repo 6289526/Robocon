@@ -68,11 +68,12 @@ void Receive_Data(Serial& serial, char* data) {
 void Recreate_Data(Serial& serial, int* data, int data_num) {
 
     char t_Data[3];
-    Receive_Data(serial, t_Data);
 
     bool t_Minus_Flag = false;
 
     for (int i = 0; i < data_num; ++i) {
+
+        Receive_Data(serial, t_Data);
 
         // データがマイナスであればフラグを立てる
         if (t_Data[0] & 0b01000000) {

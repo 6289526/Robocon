@@ -6,10 +6,10 @@
 
 // Arduino 側の send が 15 まで対応できるため
 // コードを改良すればもっと増やせるはず
-const int SensorDataNum = 15;
+const int SensorDataNum = 9;
 
 int main() {
-    Serial serial("COM5");  // COMポートを開く
+    Serial serial("COM3");  // COMポートを開く
 
     DCB t_dcb;  // シリアルポートの構成情報が入る構造体
     /*---------------------------------------------------------------------*/
@@ -28,7 +28,7 @@ int main() {
         //exit(1);
     }
 
-    Sleep(5000);    // 受信バッファにメッセージが溜まるまで待つ
+    Sleep(1000);    // 受信バッファにメッセージが溜まるまで待つ
 
     int Data[SensorDataNum] = { 0 };
 
@@ -39,8 +39,11 @@ int main() {
         Recreate_Data(serial, Data, SensorDataNum);
 
         for (int i = 0; i < SensorDataNum; ++i) {
-            std::cout << "Sensor :   " << Data[i] << '\n';
+            std::cout << "Sensor "  << i << " :"<< Data[i] << '\n';
         }
+
+        //std::cout << std::endl;
+        //Sleep(1000);
     }
 
     return 0;
